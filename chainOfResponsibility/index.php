@@ -1,14 +1,14 @@
 <?php
 
 use Thiago\BehavioralPattern\Budget;
-use Thiago\BehavioralPattern\TaxCalculator;
-use Thiago\BehavioralPattern\Taxes\Iss;
+use Thiago\BehavioralPattern\DiscountCalculator;
 
 require 'vendor/autoload.php';
 
-$calculator = new TaxCalculator();
+$calculator = new DiscountCalculator();
 
 $budget = new Budget();
-$budget->value = 100;
+$budget->itemsQuantity = 3;
+$budget->value = 2000;
 
-echo $calculator->calculate($budget, new Iss());
+echo $calculator->calculateDiscount($budget);
