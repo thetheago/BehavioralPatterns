@@ -1,0 +1,20 @@
+<?php
+
+namespace Thiago\BehavioralPattern\Discounts;
+
+use Thiago\BehavioralPattern\Budget;
+
+class DiscountValueMoreThan500 extends Discount
+{
+    public function calculateDiscount(Budget $budget): float
+    {
+        if ($budget->value > 500) {
+            return $budget->value * 0.5;
+        }
+
+        $nextDiscount = new $this->map[++$this->discountSequence]();
+        $nextDiscount->setMap($this->map);
+        $nextDiscount->setDiscountSequence($this->discountSequence);
+        return $nextDiscount->calculateDiscount($budget);
+    }
+}
