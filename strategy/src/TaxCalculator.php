@@ -2,10 +2,12 @@
 
 namespace Thiago\BehavioralPattern;
 
+use Thiago\BehavioralPattern\Interfaces\TaxInterface;
+
 class TaxCalculator
 {
-    public function calculate(Budget $budget): float
+    public function calculate(Budget $budget, TaxInterface $tax): float
     {
-        return $budget->value * 0.1;
+        return $tax->calculate($budget);
     }
 }
