@@ -9,6 +9,6 @@ $calculator = new DiscountCalculator();
 
 $budget = new Budget();
 $budget->itemsQuantity = 3;
-$budget->value = 2000;
+$budget->value = 20;
 
 echo $calculator->calculateDiscount($budget);

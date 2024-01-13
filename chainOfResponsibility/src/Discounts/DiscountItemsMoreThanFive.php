@@ -12,10 +12,6 @@ class DiscountItemsMoreThanFive extends Discount
             return $budget->value * 0.1;
         }
 
-
-        $nextDiscount = new $this->map[++$this->discountSequence]();
-        $nextDiscount->setMap($this->map);
-        $nextDiscount->setDiscountSequence($this->discountSequence);
-        return $nextDiscount->calculateDiscount($budget);
+        return $this->chainDiscount($budget);
     }
 }

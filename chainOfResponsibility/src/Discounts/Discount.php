@@ -8,9 +8,13 @@ abstract class Discount
 {
     protected Discount $nextDiscount;
 
-    protected int $discountSequence = -1;
+    protected static int $discountSequence = -1;
 
-    protected array $map;
+    protected array $discounts = [
+        DiscountValueMoreThan500::class,
+        DiscountValueMoreThan1000::class,
+        NoDiscount::class,
+    ];
 
     abstract public function calculateDiscount(Budget $budget): float;
 
@@ -19,8 +23,9 @@ abstract class Discount
         $this->nextDiscount = $discount;
     }
 
-    public function setMap(array $map): void
+    protected function chainDiscount(Budget $budget): float
     {
-        $this->map = $map;
+        $nextDiscount = new $this->discounts[++self::$discountSequence]();
+        return $nextDiscount->calculateDiscount($budget);
     }
 }
