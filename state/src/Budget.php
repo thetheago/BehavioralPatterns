@@ -2,7 +2,8 @@
 
 namespace Thiago\BehavioralPattern;
 
-use DomainException;
+use Thiago\BehavioralPattern\BudgetStates\BudgetOnApproval;
+use Thiago\BehavioralPattern\BudgetStates\BudgetState;
 
 class Budget
 {
@@ -10,23 +11,30 @@ class Budget
 
     public float $value;
 
-    public string $atualState;
+    public BudgetState $atualState;
+
+    public function __construct()
+    {
+        $this->atualState = new BudgetOnApproval();
+    }
 
     public function applyExtraDiscount()
     {
-        $this->value -= $this->calculateExtraValue();
+        $this->value -= $this->atualState->calculateExtraValue($this);
     }
 
-    public function calculateExtraValue(): float
+    public function aprove()
     {
-        if ($this->atualState == 'EM_APROVACAO') {
-            return $this->value * 0.05;
-        }
+        $this->atualState->aprove($this);
+    }
 
-        if($this->atualState == 'APROVADO') {
-            return $this->value * 0.02;
-        }
+    public function reprove()
+    {
+        $this->atualState->reprove($this);
+    }
 
-        return new DomainException('Orçamentos repoados e finializados não podem receber desconto');
+    public function finish()
+    {
+        $this->atualState->finish($this);
     }
 }
