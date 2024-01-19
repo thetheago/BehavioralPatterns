@@ -7,6 +7,9 @@ use Thiago\BehavioralPattern\Budget;
 
 class BudgetReproved extends BudgetState
 {
+    /**
+     * @throws DomainException;
+     */
     public function calculateExtraValue(Budget $budget): float
     {
         throw new DomainException('Um orçamento reprovado não pode calcular valor extra');
