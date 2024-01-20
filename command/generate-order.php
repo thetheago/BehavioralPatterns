@@ -7,4 +7,5 @@ $itemsQuantity = $argv[1];
 $clientName  = $argv[1];
 
 $generateOrder = new \Thiago\BehavioralPattern\Commands\GenerateOrder($budgetValue, $itemsQuantity, $clientName);
-$generateOrder->execute();
+$generateOrderHandler = new \Thiago\BehavioralPattern\Commands\GenerateOrderHandler();
+$generateOrderHandler->execute($generateOrder);
