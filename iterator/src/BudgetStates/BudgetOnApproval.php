@@ -15,4 +15,9 @@ class BudgetOnApproval extends BudgetState
     {
         $budget->atualState = new BudgetAproved();
     }
+
+    public function reprove(Budget $budget): void
+    {
+        $budget->atualState = new BudgetReproved();
+    }
 }

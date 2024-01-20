@@ -1,11 +1,5 @@
-Neste cenário temos um processo que gera o pedido, implementamos a geração
-do pedido e alguns logs no final, em uma aplicação real onde temos varias entradas
-para este processo como API, Terminal, Web, é importante lidarmos com o encapuslamento
-dessa parte do código corretamente.
+Bom... esse é basicamente uma solução para um Array tipado no PHP kkkkkkkk
+Basta implementar a interface Iterator e expor os comportamentos
+para controlar a iteração pelos itens.
 
-Com o design Command podemos separar o Command de gerar a ordem e uma classe e apenas
-chama-la para ser executada em qualquer contexto que precisarmos, sem duplicar código.
-Este padrão de Command e CommandHandler se veio pela necessidade de sistemas
-com arquiteturas hexagonais ou camadas, onde temos os usecases que são como os Handlers.
-Estes Handlers sabem como lidar com o que precisa, e está aberto para receber
-dependências do lado de fora.
+Esse é o meu favorito por que é simples.
