@@ -2,11 +2,7 @@
 
 namespace Thiago\BehavioralPattern\Commands;
 
-use DateTimeImmutable;
-use Thiago\BehavioralPattern\Budget;
-use Thiago\BehavioralPattern\Order;
-
-class GenerateOrder implements Command
+class GenerateOrder
 {
     private float $budgetValue;
     private int $itemsQuantity;
@@ -23,18 +19,18 @@ class GenerateOrder implements Command
         $this->clientName = $clientName;
     }
 
-    public function execute()
+    public function getBudgetValue(): float
     {
-        $budget = new Budget();
-        $budget->itemsQuantity = $this->itemsQuantity;
-        $budget->value = $this->budgetValue;
+        return $this->budgetValue;
+    }
 
-        $order = new Order();
-        $order->finalDate = new DateTimeImmutable();
-        $order->clientName = $this->clientName;
-        $order->budget = $budget;
+    public function getItemsQuantity(): int
+    {
+        return $this->itemsQuantity;
+    }
 
-        echo "Cria pedido no banco de dados ". PHP_EOL;
-        echo "Envia e-mail para o client ". PHP_EOL;
+    public function getClientName(): string
+    {
+        return $this->clientName;
     }
 }
